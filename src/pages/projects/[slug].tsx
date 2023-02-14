@@ -1,6 +1,6 @@
-import ProjectFooter from "@/components/project/footer/projectFooter";
-import ProjectHeader from "@/components/project/header/projectHeader";
-import TechStack from "@/components/project/techstack/techStack";
+import ProjectFooter from "@/components/projects/project/footer/projectFooter";
+import ProjectHeader from "@/components/projects/project/header/projectHeader";
+import TechStack from "@/components/projects/project/techstack/techStack";
 import { IProject } from "@/types";
 import { getProjectFromSlug, getSlug } from "@/utils/mdx";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
@@ -11,6 +11,7 @@ import rehypeCodeTitles from "rehype-code-titles";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/atom-one-dark-reasonable.css";
 import rehypeSlug from "rehype-slug";
+import Image from "next/image";
 
 interface ProjectProps {
   project: {
@@ -31,6 +32,15 @@ export default function Project({
         <ProjectHeader project={frontmatter} />
         <hr />
         <TechStack techStack={frontmatter.techStack} />
+        <hr />
+        <div className="relative w-full h-64 rounded-lg overflow-hidden shadow">
+          <Image
+            className="object-cover"
+            src={frontmatter.coverImg!}
+            alt={frontmatter.seoTitle!}
+            fill
+          />
+        </div>
         <div className="prose prose-lg dark:prose-invert">
           <MDXRemote {...source} />
         </div>

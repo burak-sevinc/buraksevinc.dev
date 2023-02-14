@@ -6,6 +6,7 @@ export interface IProject {
   techStack?: string[];
   excerpt?: string;
   title?: string;
+  coverImg?: string;
   publishedAt?: string;
 }
 

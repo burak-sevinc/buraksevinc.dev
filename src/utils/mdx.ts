@@ -31,6 +31,7 @@ export async function getProjectFromSlug(slug: string) {
       excerpt: data.excerpt,
       title: data.title,
       seoTitle: data.seoTitle,
+      coverImg: data.coverImg || null,
       techStack: data.techStack || null,
       githubRepoUrl: data.githubRepoUrl || null,
       publishedAt: data.publishedAt,
