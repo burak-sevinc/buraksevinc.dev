@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default function Hello() {
@@ -5,12 +6,19 @@ export default function Hello() {
     <div className="grid grid-cols-1 items-center gap-4 p-4 font-Poppins md:grid-cols-3">
       <div className="text-center md:col-span-2 md:text-left">
         <p className=" md:text-2xl">Hello! I am</p>
-        <h1 className="-ml-1 text-4xl text-amber-500 dark:text-primary md:text-6xl ">
+        <h1 className="-ml-1 text-4xl md:text-6xl text-amber-500 dark:text-primary">
           Burak Sevinç
         </h1>
-        <p className="">Front end & Full Stack Developer</p>
+        <p className="text-amber-600 dark:text-sky-600">
+          Front end & Full Stack Developer
+        </p>
       </div>
-      <div className="aspect-square rounded-full bg-slate-500"></div>
+      <div className="relative">
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-purple-600 blur opacity-0 dark:opacity-50 rounded-full"></div>
+        <div className="relative aspect-square rounded-full overflow-hidden">
+          <Image src={"/img/test-img.jpg"} alt="me" fill />
+        </div>
+      </div>
     </div>
   );
 }

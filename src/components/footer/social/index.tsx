@@ -33,7 +33,7 @@ export default function SocialSection() {
   return (
     <div className="flex flex-row justify-center gap-2">
       {social.map((item) => (
-        <Link href={item.href} key={item.href}>
+        <Link href={item.href} key={item.href} className="transition hover:scale-125">
           {item.component}
         </Link>
       ))}

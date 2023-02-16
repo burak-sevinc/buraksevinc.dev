@@ -14,4 +14,10 @@ export interface INavLink {
   key?: string;
   name: string;
   href: string;
+  scroll?: boolean;
+}
+
+export interface IPageHeader {
+  title: string;
+  description: string;
 }

@@ -12,6 +12,8 @@ import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/atom-one-dark-reasonable.css";
 import rehypeSlug from "rehype-slug";
 import Image from "next/image";
+import { GetStaticProps } from "next";
+import { ParsedUrlQuery } from "querystring";
 
 interface ProjectProps {
   project: {
@@ -50,9 +52,9 @@ export default function Project({
   );
 }
 
-// dynamically generate the slugs for each article(s)
+// dynamically generate the slugs for each project(s)
 export async function getStaticPaths() {
-  // getting all paths of each article as an array of
+  // getting all paths of each project as an array of
   // objects with their unique slugs
   const paths = (await getSlug()).map((slug) => ({ params: { slug } }));
 
@@ -64,9 +66,13 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }: any) {
+interface IParams extends ParsedUrlQuery {
+  slug: string;
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
   //fetch the particular file based on the slug
-  const { slug } = params;
+  const { slug } = context.params as IParams;
   const { content, frontmatter } = await getProjectFromSlug(slug);
 
   const mdxSource = await serialize(content, {
@@ -94,4 +100,4 @@ export async function getStaticProps({ params }: any) {
       },
     },
   };
-}
+};
