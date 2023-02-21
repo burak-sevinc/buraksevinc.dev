@@ -11,9 +11,11 @@ html {
   .light {
     --color-primary: 61 61 61;
     --color-secondary: 250 250 250;
+    --color-skeleton: 202 203 206;
   }
   .dark {
     --color-primary: 56 189 248;
     --color-secondary: 61 61 61;
+    --color-skeleton: 88 88 88;
   }
 }

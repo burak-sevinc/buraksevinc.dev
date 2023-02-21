@@ -1,24 +1,39 @@
 import PageHeader from "@/components/page/pageHeader";
-import ProjectCard from "@/components/projects/projectCard";
+import SkeletonProjectCard from "@/components/projects/skeletonProjectCard";
 import { IPageHeader, IProject } from "@/types";
 import { getAllProjects } from "@/utils/mdx";
 import { GetStaticProps } from "next";
-import React from "react";
+import React, { Suspense } from "react";
 
 const header: IPageHeader = {
   title: "Projects",
   description: "You can find some of my latest projects here!",
 };
 
+const ProjectCard = React.lazy(
+  () => import("@/components/projects/projectCard")
+);
+
 export default function Projects({ projects }: { projects: IProject[] }) {
   return (
     <div className="flex flex-col gap-8">
       <div>
         <PageHeader title={header.title} description={header.description} />
+        {projects.length < 1 ? (
+          <div className="flex justify-center py-8">
+            <p className="text-xs">No projects yet</p>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       <div className="flex flex-col gap-8">
         {projects.map((project: IProject) => (
-          <ProjectCard key={project.slug} project={project} />
+          <div key={project.slug}>
+            <Suspense fallback={<SkeletonProjectCard />}>
+              <ProjectCard key={project.slug} project={project} />
+            </Suspense>
+          </div>
         ))}
       </div>
     </div>

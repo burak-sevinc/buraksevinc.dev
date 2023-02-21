@@ -18,7 +18,7 @@ export default function Navbar() {
     },
     {
       name: "contact",
-      href: "#",
+      href: "/contact",
     },
   ];
 

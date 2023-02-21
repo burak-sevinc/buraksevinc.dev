@@ -1,6 +1,4 @@
 import ProjectFooter from "@/components/projects/project/footer/projectFooter";
-import ProjectHeader from "@/components/projects/project/header/projectHeader";
-import TechStack from "@/components/projects/project/techstack/techStack";
 import { IProject } from "@/types";
 import { getProjectFromSlug, getSlug } from "@/utils/mdx";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
@@ -11,9 +9,14 @@ import rehypeCodeTitles from "rehype-code-titles";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/atom-one-dark-reasonable.css";
 import rehypeSlug from "rehype-slug";
-import Image from "next/image";
 import { GetStaticProps } from "next";
 import { ParsedUrlQuery } from "querystring";
+import ResponsiveImage from "@/components/mdx/responsiveImage";
+import Link from "next/link";
+import React, { Suspense } from "react";
+import SkeletonProjectHeader from "@/components/projects/project/skeleton/skeletonProjectHeader";
+import SkeletonTechStack from "@/components/projects/project/skeleton/skeletonTechStack";
+import SkeletonProjectImage from "@/components/projects/project/skeleton/skeletonProjectImage";
 
 interface ProjectProps {
   project: {
@@ -21,6 +24,20 @@ interface ProjectProps {
     frontmatter: IProject;
   };
 }
+
+const components = {
+  ResponsiveImage,
+  Link,
+};
+
+const ProjectHeader = React.lazy(
+  () => import("@/components/projects/project/header/projectHeader")
+);
+const TechStack = React.lazy(
+  () => import("@/components/projects/project/techstack/techStack")
+);
+
+const Image = React.lazy(() => import("next/image"));
 
 export default function Project({
   project: { source, frontmatter },
@@ -31,22 +48,40 @@ export default function Project({
         <title>{frontmatter.seoTitle}</title>
       </Head>
       <div className="space-y-4">
-        <ProjectHeader project={frontmatter} />
+        <Suspense fallback={<SkeletonProjectHeader />}>
+          <ProjectHeader project={frontmatter} />
+        </Suspense>
         <hr />
-        <TechStack techStack={frontmatter.techStack} />
+        <Suspense fallback={<SkeletonTechStack />}>
+          <TechStack techStack={frontmatter.techStack} />
+        </Suspense>
         <hr />
-        <div className="relative w-full h-64 rounded-lg overflow-hidden shadow">
-          <Image
-            className="object-cover"
-            src={frontmatter.coverImg!}
-            alt={frontmatter.seoTitle!}
-            fill
-          />
-        </div>
+        {frontmatter.coverImg ? (
+          <div className="relative w-full h-64 rounded-lg overflow-hidden shadow">
+            <Suspense fallback={<SkeletonProjectImage />}>
+              <Image
+                className="object-cover"
+                src={frontmatter.coverImg}
+                alt={
+                  frontmatter.title
+                    ? frontmatter.title
+                    : "Burak Sevinç project photo"
+                }
+                fill
+              />
+            </Suspense>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="prose prose-lg dark:prose-invert">
-          <MDXRemote {...source} />
+          <Suspense fallback={<div>Loading...</div>}>
+            <MDXRemote {...source} components={components} />
+          </Suspense>
         </div>
-        <ProjectFooter githubRepoUrl={frontmatter.githubRepoUrl} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ProjectFooter githubRepoUrl={frontmatter.githubRepoUrl} />
+        </Suspense>
       </div>
     </>
   );
