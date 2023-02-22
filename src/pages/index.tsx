@@ -1,7 +1,12 @@
 import About from "@/components/home/about/about";
-import Skills from "@/components/home/about/skills";
+import React, { Suspense } from "react";
 import Hello from "@/components/home/hello";
-import ScrollDown from "@/components/home/scrollDown";
+
+const ScrollDown = React.lazy(() => import("@/components/home/scrollDown"));
+const Skills = React.lazy(() => import("@/components/home/about/skills"));
+const JobSection = React.lazy(
+  () => import("@/components/home/about/jobSection")
+);
 
 export default function Home() {
   return (
@@ -9,10 +14,17 @@ export default function Home() {
       <div className="flex flex-col">
         <Hello />
         <hr className="my-12" />
-        <ScrollDown />
+        <Suspense fallback={<p>...</p>}>
+          <ScrollDown />
+        </Suspense>
         <div className="flex flex-col gap-8">
           <About />
-          <Skills />
+          <Suspense>
+            <Skills />
+          </Suspense>
+          <Suspense>
+            <JobSection />
+          </Suspense>
         </div>
       </div>
     </>

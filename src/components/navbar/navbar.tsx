@@ -18,13 +18,14 @@ export default function Navbar() {
     },
     {
       name: "contact",
-      href: "/contact",
+      href: "/#contact",
+      scroll:false
     },
   ];
 
   return (
     <>
-      <div className="sticky top-5 z-10 mx-auto mb-8 hidden md:flex w-full max-w-2xl justify-between rounded-lg border border-slate-300 bg-secondary/80 dark:bg-[#111111]/80 p-8 shadow-lg backdrop-blur-sm dark:border-zinc-700">
+      <div className="sticky top-5 z-10 mx-auto mb-8 hidden md:flex w-full max-w-2xl justify-between border-y bg-secondary/80 dark:bg-[#111111]/80 p-8 shadow-lg backdrop-blur-sm border-slate-300 dark:border-zinc-700">
         <div>
           <Link
             href="/"

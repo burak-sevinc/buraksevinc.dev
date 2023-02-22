@@ -5,7 +5,7 @@ import TechSection from "./about/techSection";
 export default function Hello() {
   return (
     <div className="grid grid-cols-1 items-center gap-4 p-4 font-Poppins md:grid-cols-3 mt-12">
-      <div className="text-center md:col-span-2 md:text-left">
+      <div className="text-center md:col-span-2 flex flex-col gap-4 md:text-left">
         <p className=" md:text-2xl">Hello! I am</p>
         <h1 className="-ml-1 text-4xl md:text-6xl text-amber-500 dark:text-primary">
           Burak Sevinç
