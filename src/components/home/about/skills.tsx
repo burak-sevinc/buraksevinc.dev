@@ -37,7 +37,7 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="">
+    <section id="skills" className="pt-20">
       <div className="prose dark:prose-invert font-Poppins">
         <h2>Skills and Interests</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">

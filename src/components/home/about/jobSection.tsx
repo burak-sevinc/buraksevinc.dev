@@ -7,7 +7,7 @@ const ContactSection = React.lazy(
 
 export default function JobSection() {
   return (
-    <section id="contact">
+    <section id="contact" className="pt-20">
       <div className="prose dark:prose-invert font-Poppins mt-8">
         <h3>Work</h3>
         <p>

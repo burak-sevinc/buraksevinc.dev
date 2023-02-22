@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <section id="about" className="pt-12">
+    <section id="about" className="pt-20">
       <div className="prose dark:prose-invert font-Poppins flex">
         <div className="w-3/4">
           <h2 className="">About</h2>
