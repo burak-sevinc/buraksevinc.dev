@@ -2,12 +2,17 @@ import About from "@/components/home/about/about";
 import React, { Suspense } from "react";
 import Hello from "@/components/home/hello";
 import { NextSeo } from "next-seo";
+import dynamic from "next/dynamic";
 
-const ScrollDown = React.lazy(() => import("@/components/home/scrollDown"));
-const Skills = React.lazy(() => import("@/components/home/about/skills"));
-const JobSection = React.lazy(
-  () => import("@/components/home/about/jobSection")
-);
+const ScrollDown = dynamic(() => import("@/components/home/scrollDown"), {
+  ssr: false,
+});
+const Skills = dynamic(() => import("@/components/home/about/skills"), {
+  ssr: false,
+});
+const JobSection = dynamic(() => import("@/components/home/about/jobSection"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
@@ -46,10 +51,10 @@ export default function Home() {
         </Suspense>
         <div className="flex flex-col gap-8">
           <About />
-          <Suspense>
+          <Suspense fallback={<p>Loading...</p>}>
             <Skills />
           </Suspense>
-          <Suspense>
+          <Suspense fallback={<p>Loading...</p>}>
             <JobSection />
           </Suspense>
         </div>

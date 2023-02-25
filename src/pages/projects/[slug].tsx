@@ -17,6 +17,7 @@ import React, { Suspense } from "react";
 import SkeletonProjectHeader from "@/components/projects/project/skeleton/skeletonProjectHeader";
 import SkeletonTechStack from "@/components/projects/project/skeleton/skeletonTechStack";
 import SkeletonProjectImage from "@/components/projects/project/skeleton/skeletonProjectImage";
+import dynamic from "next/dynamic";
 
 interface ProjectProps {
   project: {
@@ -30,14 +31,16 @@ const components = {
   Link,
 };
 
-const ProjectHeader = React.lazy(
-  () => import("@/components/projects/project/header/projectHeader")
+const ProjectHeader = dynamic(
+  () => import("@/components/projects/project/header/projectHeader"),
+  { ssr: false }
 );
-const TechStack = React.lazy(
-  () => import("@/components/projects/project/techstack/techStack")
+const TechStack = dynamic(
+  () => import("@/components/projects/project/techstack/techStack"),
+  { ssr: false }
 );
 
-const Image = React.lazy(() => import("next/image"));
+const Image = dynamic(() => import("next/image"), { ssr: false });
 
 export default function Project({
   project: { source, frontmatter },

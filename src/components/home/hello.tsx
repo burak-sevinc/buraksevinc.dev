@@ -20,8 +20,15 @@ export default function Hello() {
       <div className="relative md:w-full w-1/2 mx-auto">
         <div className="absolute -inset-0.5 dark:bg-gradient-to-r dark:from-primary dark:to-purple-600 blur opacity-0 dark:opacity-50 rounded-full"></div>
         <div className="relative aspect-square rounded-full overflow-hidden">
-          {/* 131x131 171x171 px */}
-          <Image src={"/img/test-img.jpg"} alt="Burak Sevinç" fill quality={50} />
+          {/* 262x262 131x131 px */}
+          <Image
+            src={"/img/test-img.jpg"}
+            alt="Burak Sevinç"
+            fill
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+          />
         </div>
       </div>
     </div>

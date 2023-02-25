@@ -1,8 +1,10 @@
 import React, { Suspense } from "react";
 import SkeletonContactSection from "@/components/contact/skeletonContactSection";
+import dynamic from "next/dynamic";
 
-const ContactSection = React.lazy(
-  () => import("@/components/contact/contactSection")
+const ContactSection = dynamic(
+  () => import("@/components/contact/contactSection"),
+  { ssr: false }
 );
 
 export default function JobSection() {

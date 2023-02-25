@@ -1,8 +1,9 @@
 import React, { Suspense } from "react";
 import Navbar from "./navbar/navbar";
 import Head from "next/head";
+import dynamic from "next/dynamic";
 
-const Footer = React.lazy(() => import("./footer"));
+const Footer = dynamic(() => import('./footer'), {ssr: false})
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

@@ -3,6 +3,7 @@ import SkeletonProjectCard from "@/components/projects/skeletonProjectCard";
 import { IPageHeader, IProject } from "@/types";
 import { getAllProjects } from "@/utils/mdx";
 import { GetStaticProps } from "next";
+import dynamic from "next/dynamic";
 import React, { Suspense } from "react";
 
 const header: IPageHeader = {
@@ -10,9 +11,9 @@ const header: IPageHeader = {
   description: "You can find some of my latest projects here!",
 };
 
-const ProjectCard = React.lazy(
-  () => import("@/components/projects/projectCard")
-);
+const ProjectCard = dynamic(() => import("@/components/projects/projectCard"), {
+  ssr: false,
+});
 
 export default function Projects({ projects }: { projects: IProject[] }) {
   return (
