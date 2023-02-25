@@ -6,7 +6,7 @@ export default function About() {
   return (
     <section id="about" className="pt-20">
       <div className="prose dark:prose-invert font-Poppins flex">
-        <div className="w-3/4">
+        <div className="md:w-3/4 w-full">
           <h2 className="">About</h2>
           <div className="">
             <p>{`Hi there! I'm a web developer who's passionate about React.js. I've developed several projects with it and find it to be a powerful and versatile framework. Lately, I've been exploring Typescript and have found it to be incredibly useful in improving the quality of my code.`}</p>
@@ -20,7 +20,7 @@ export default function About() {
             </p>
           </div>
         </div>
-        <div className="sticky top-32 w-24 h-24 mx-8 py-5">
+        <div className="sticky hidden md:flex top-32 w-24 h-24 mx-8 py-5">
           <div className="py-8">
             <Image
               className="rounded-lg"

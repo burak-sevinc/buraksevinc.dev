@@ -9,7 +9,7 @@ export default function DropdownMenu({ links }: { links: INavLink[] }) {
   return (
     <>
       <Menu as="div" className="outline-none focus:outline-none">
-        <Menu.Button as="div" onClick={() => setOpen(!open)}>
+        <Menu.Button onClick={() => setOpen(!open)}>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
