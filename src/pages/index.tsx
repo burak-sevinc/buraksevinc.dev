@@ -17,7 +17,7 @@ export default function Home() {
         description="This example uses more of the available config options."
         canonical="https://www.canonical.ie/"
         openGraph={{
-          url: "https://www.url.ie/a",
+          url: "https://buraksevinc-dev.vercel.app/",
           title: "Burak Sevinç - Frontend Web Developer",
           description:
             "As a frontend developer with a passion for React and Next.js, I enjoy creating responsive and intuitive user interfaces that bring ideas to life.",
