@@ -3,7 +3,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import readingTime from "reading-time";
 import { sync } from "glob";
-import { IProject } from "@/types";
+import { IProject, IProjectSlug } from "@/types";
 
 const projectsPath = path.join(process.cwd(), "src/data/projects");
 
@@ -39,6 +39,31 @@ export async function getProjectFromSlug(slug: string) {
       ...data,
     },
   };
+}
+
+
+export async function getAllSlugs(): Promise<Array<IProjectSlug>> {
+  const projects = fs.readdirSync(
+    path.join(process.cwd(), "src/data/projects")
+  );
+
+  return projects.reduce((allProjects: IProjectSlug[], projectSlug: string) => {
+    // get parsed data from mdx files in the "projects" dir
+    const source = fs.readFileSync(
+      path.join(process.cwd(), "src/data/projects", projectSlug),
+      "utf-8"
+    );
+
+    const { data } = matter(source);
+
+    return [
+      {
+        slug: projectSlug.replace(".mdx", ""),
+        publishedAt: data.publishedAt || "2023-02-28"
+      },
+      ...allProjects,
+    ];
+  }, []);
 }
 
 export async function getAllProjects(): Promise<Array<IProject>> {

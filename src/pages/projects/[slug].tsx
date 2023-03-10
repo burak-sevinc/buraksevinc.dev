@@ -1,9 +1,7 @@
-import ProjectFooter from "@/components/projects/project/footer/projectFooter";
 import { IProject } from "@/types";
 import { getProjectFromSlug, getSlug } from "@/utils/mdx";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
-import Head from "next/head";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypeHighlight from "rehype-highlight";
@@ -13,11 +11,22 @@ import { GetStaticProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import ResponsiveImage from "@/components/mdx/responsiveImage";
 import Link from "next/link";
-import React, { Suspense } from "react";
+import React from "react";
 import SkeletonProjectHeader from "@/components/projects/project/skeleton/skeletonProjectHeader";
 import SkeletonTechStack from "@/components/projects/project/skeleton/skeletonTechStack";
 import SkeletonProjectImage from "@/components/projects/project/skeleton/skeletonProjectImage";
 import dynamic from "next/dynamic";
+import { NextSeo } from "next-seo";
+import SkeletonMDX from "@/components/projects/project/skeleton/skeletonMDX";
+import SkeletonProjectFooter from "@/components/projects/project/skeleton/skeletonProjectFooter";
+
+const MDXRemote = dynamic(
+  () => import("next-mdx-remote").then((mod) => mod.MDXRemote),
+  {
+    loading: () => <SkeletonMDX />,
+    ssr: false,
+  }
+);
 
 interface ProjectProps {
   project: {
@@ -33,58 +42,91 @@ const components = {
 
 const ProjectHeader = dynamic(
   () => import("@/components/projects/project/header/projectHeader"),
-  { ssr: false }
+  {
+    loading: () => <SkeletonProjectHeader />,
+    ssr: false,
+  }
 );
 const TechStack = dynamic(
   () => import("@/components/projects/project/techstack/techStack"),
-  { ssr: false }
+  { loading: () => <SkeletonTechStack />, ssr: false }
 );
 
-const Image = dynamic(() => import("next/image"), { ssr: false });
+const Image = dynamic(() => import("next/image"), {
+  loading: () => <SkeletonProjectImage />,
+  ssr: false,
+});
 
+const ProjectFooter = dynamic(
+  () => import("@/components/projects/project/footer/projectFooter"),
+  {
+    loading: () => <SkeletonProjectFooter />,
+    ssr: false,
+  }
+);
 export default function Project({
   project: { source, frontmatter },
 }: ProjectProps) {
   return (
     <>
-      <Head>
-        <title>{frontmatter.seoTitle}</title>
-      </Head>
+      <NextSeo
+        title={`${frontmatter.seoTitle} - Burak Sevinc`}
+        description={
+          frontmatter.excerpt
+            ? frontmatter.excerpt
+            : `As a frontend developer with a passion for React and Next.js, I enjoy creating responsive and intuitive user interfaces that bring ideas to life.`
+        }
+        canonical="https://www.canonical.ie/"
+        openGraph={{
+          url: `https://buraksevinc-dev.vercel.app/${frontmatter.slug}`,
+          title: "Burak Sevinç - Frontend Web Developer",
+          description: frontmatter.excerpt
+            ? frontmatter.excerpt
+            : `As a frontend developer with a passion for React and Next.js, I enjoy creating responsive and intuitive user interfaces that bring ideas to life.`,
+          images: [
+            {
+              url: frontmatter.coverImg
+                ? frontmatter.coverImg
+                : "https://buraksevinc-dev.vercel.app/img/test-img.jpg",
+              width: 800,
+              height: 600,
+              alt: frontmatter.seoTitle,
+              type: "image/jpeg",
+            },
+          ],
+          siteName: "Burak Sevinç - Frontend Developer",
+        }}
+        twitter={{
+          handle: "@handle",
+          site: "@site",
+          cardType: "summary_large_image",
+        }}
+      />
       <div className="space-y-4">
-        <Suspense fallback={<SkeletonProjectHeader />}>
-          <ProjectHeader project={frontmatter} />
-        </Suspense>
+        <ProjectHeader project={frontmatter} />
         <hr />
-        <Suspense fallback={<SkeletonTechStack />}>
-          <TechStack techStack={frontmatter.techStack} />
-        </Suspense>
+        <TechStack techStack={frontmatter.techStack} />
         <hr />
         {frontmatter.coverImg ? (
           <div className="relative w-full h-64 rounded-lg overflow-hidden shadow">
-            <Suspense fallback={<SkeletonProjectImage />}>
-              <Image
-                className="object-cover"
-                src={frontmatter.coverImg}
-                alt={
-                  frontmatter.title
-                    ? frontmatter.title
-                    : "Burak Sevinç project photo"
-                }
-                fill
-              />
-            </Suspense>
+            <Image
+              className="object-cover"
+              src={frontmatter.coverImg}
+              alt={
+                frontmatter.title
+                  ? frontmatter.title
+                  : "Burak Sevinç project photo"
+              }
+              fill
+            />
           </div>
         ) : (
           ""
         )}
-        <div className="prose prose-lg dark:prose-invert">
-          <Suspense fallback={<div>Loading...</div>}>
-            <MDXRemote {...source} components={components} />
-          </Suspense>
+        <div className="prose prose-lg dark:prose-invert pt-8">
+          <MDXRemote {...source} components={components} />
         </div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <ProjectFooter githubRepoUrl={frontmatter.githubRepoUrl} />
-        </Suspense>
+        <ProjectFooter githubRepoUrl={frontmatter.githubRepoUrl} />
       </div>
     </>
   );

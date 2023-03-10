@@ -8,7 +8,14 @@ export interface IProject {
   title?: string;
   coverImg?: string;
   publishedAt?: string;
+  githubRepoUrl?: string;
 }
+
+export interface IProjectSlug {
+  slug: string,
+  publishedAt: string;
+}
+
 
 export interface INavLink {
   key?: string;

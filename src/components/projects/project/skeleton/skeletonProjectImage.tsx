@@ -3,7 +3,7 @@ import React from "react";
 export default function SkeletonProjectImage() {
   return (
     <>
-      <div className="flex justify-center items-center bg-skeleton w-full h-64 rounded-lg overflow-hidden shadow">
+      <div className="flex animate-pulse justify-center items-center bg-skeleton w-full h-64 rounded-lg overflow-hidden shadow">
         <svg
           className="w-12 h-12 text-gray-300 dark:text-gray-200"
           xmlns="http://www.w3.org/2000/svg"

@@ -10,6 +10,7 @@ export default function DropdownMenu({ links }: { links: INavLink[] }) {
     <>
       <Menu as="div" className="outline-none focus:outline-none">
         <Menu.Button onClick={() => setOpen(!open)}>
+          <div className="sr-only">Menu button</div>
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

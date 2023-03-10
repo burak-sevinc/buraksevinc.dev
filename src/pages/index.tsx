@@ -1,16 +1,21 @@
 import About from "@/components/home/about/about";
-import React, { Suspense } from "react";
+import React from "react";
 import Hello from "@/components/home/hello";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 
+const Loading = () => <>Loading...</>;
+
 const ScrollDown = dynamic(() => import("@/components/home/scrollDown"), {
+  loading: () => <Loading />,
   ssr: false,
 });
 const Skills = dynamic(() => import("@/components/home/about/skills"), {
+  loading: () => <Loading />,
   ssr: false,
 });
 const JobSection = dynamic(() => import("@/components/home/about/jobSection"), {
+  loading: () => <Loading />,
   ssr: false,
 });
 
@@ -19,7 +24,7 @@ export default function Home() {
     <>
       <NextSeo
         title="Burak Sevinc - Frontend Web Developer"
-        description="This example uses more of the available config options."
+        description="As a frontend developer with a passion for React and Next.js, I enjoy creating responsive and intuitive user interfaces that bring ideas to life."
         canonical="https://www.canonical.ie/"
         openGraph={{
           url: "https://buraksevinc-dev.vercel.app/",
@@ -46,17 +51,13 @@ export default function Home() {
       <div className="flex flex-col">
         <Hello />
         <hr className="my-12" />
-        <Suspense fallback={<p>...</p>}>
+        <div className="flex justify-center">
           <ScrollDown />
-        </Suspense>
+        </div>
         <div className="flex flex-col gap-8">
           <About />
-          <Suspense fallback={<p>Loading...</p>}>
-            <Skills />
-          </Suspense>
-          <Suspense fallback={<p>Loading...</p>}>
-            <JobSection />
-          </Suspense>
+          <Skills />
+          <JobSection />
         </div>
       </div>
     </>

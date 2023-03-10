@@ -31,7 +31,7 @@ export default function ProjectCard({ project }: { project: IProject }) {
               </h1>
             </Link>
             <div className="flex items-start min-w-12 pt-2 md:pt-0">
-              <p className="text-xs flex md:justify-end w-24">
+              <p className="text-xs flex md:justify-end w-36">
                 {dayjs(project.publishedAt).format("MMMM D, YYYY")}
               </p>
             </div>

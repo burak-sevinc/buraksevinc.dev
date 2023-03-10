@@ -2,8 +2,8 @@ import React from "react";
 
 export default function SkeletonProjectHeader() {
   return (
-    <>
-      <div className=" h-8 w-full bg-skeleton"></div>
+    <div className="animate-pulse">
+      <div className="h-8 w-full bg-skeleton"></div>
       <div className="space-y-3">
         <div className="grid grid-cols-3 gap-4">
           <div className="h-2 bg-skeleton rounded col-span-2"></div>
@@ -22,6 +22,6 @@ export default function SkeletonProjectHeader() {
           <div className="h-4 w-8 bg-skeleton"></div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

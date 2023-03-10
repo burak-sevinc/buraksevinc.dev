@@ -1,10 +1,12 @@
-import React, { Suspense } from "react";
 import SkeletonContactSection from "@/components/contact/skeletonContactSection";
 import dynamic from "next/dynamic";
 
 const ContactSection = dynamic(
   () => import("@/components/contact/contactSection"),
-  { ssr: false }
+  {
+    loading: () => <SkeletonContactSection />,
+    ssr: false,
+  }
 );
 
 export default function JobSection() {
@@ -18,9 +20,7 @@ export default function JobSection() {
           to apply my skills and expertise to develop innovative solutions.
           Let&lsquo;s work together to bring your web projects to life!
         </p>
-        <Suspense fallback={<SkeletonContactSection />}>
-          <ContactSection />
-        </Suspense>
+        <ContactSection />
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ export default function ProjectFooter({
   githubRepoUrl?: string;
 }) {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center pt-8">
       <Link
         href={githubRepoUrl ? githubRepoUrl : githubProfileUrl}
         className={`flex flex-col items-center gap-2`}
@@ -28,7 +28,7 @@ export default function ProjectFooter({
           </svg>
         </span>
         <p className="text-xs">
-          go to {githubRepoUrl ? "repository" : "profile"}
+          {githubRepoUrl ? "repository" : "my profile"}
         </p>
       </Link>
     </div>
