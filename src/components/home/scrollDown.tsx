@@ -2,7 +2,7 @@ import React from "react";
 
 export default function ScrollDown() {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center ">
       <p className="text-xs font-Poppins">Scroll down</p>
       <span className="animate-bounce">
         <svg

@@ -7,12 +7,12 @@ import Twitter from "./footer/social/svg/twitter";
 export const socials = [
   {
     component: <Email />,
-    href: "mailto:buraksevinc.dev@gmail.com",
+    href: "mailto:info@buraksevinc.dev",
     description: "Sent Email Link"
   },
   {
     component: <Github />,
-    href: "https://github.com/iamBuraks",
+    href: "https://github.com/burak-sevinc",
     description: "Github Profile Link"
   },
   {
@@ -22,7 +22,7 @@ export const socials = [
   },
   {
     component: <LinkedIn />,
-    href: "https://www.linkedin.com/in/ahmet-burak-sevin%C3%A7-4ba338136/",
+    href: "https://www.linkedin.com/in/buraksevinc-dev/",
     description: "Linkedin Profile Link"
   },
   {
