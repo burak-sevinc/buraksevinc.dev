@@ -78,7 +78,7 @@ export default function Project({
         }
         canonical="https://www.canonical.ie/"
         openGraph={{
-          url: `https://buraksevinc-dev.vercel.app/${frontmatter.slug}`,
+          url: `https://buraksevinc.dev/${frontmatter.slug}`,
           title: "Burak Sevinç - Frontend Web Developer",
           description: frontmatter.excerpt
             ? frontmatter.excerpt
@@ -87,7 +87,7 @@ export default function Project({
             {
               url: frontmatter.coverImg
                 ? frontmatter.coverImg
-                : "https://buraksevinc-dev.vercel.app/img/test-img.jpg",
+                : `https://buraksevinc.dev/${frontmatter.coverImg}`,
               width: 800,
               height: 600,
               alt: frontmatter.seoTitle,

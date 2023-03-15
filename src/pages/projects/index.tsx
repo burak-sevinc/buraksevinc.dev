@@ -25,13 +25,13 @@ export default function Projects({ projects }: { projects: IProject[] }) {
         description="As a frontend developer with a passion for React and Next.js, I enjoy creating responsive and intuitive user interfaces that bring ideas to life."
         canonical="https://www.canonical.ie/"
         openGraph={{
-          url: "https://buraksevinc-dev.vercel.app/",
+          url: "https://buraksevinc.dev/",
           title: "Burak Sevinç - Frontend Web Developer",
           description:
             "As a frontend developer with a passion for React and Next.js, I enjoy creating responsive and intuitive user interfaces that bring ideas to life.",
           images: [
             {
-              url: "https://buraksevinc-dev.vercel.app/img/test-img.jpg",
+              url: "https://buraksevinc.dev/img/site-mockup.png",
               width: 800,
               height: 600,
               alt: "Photo of Burak Sevinc",

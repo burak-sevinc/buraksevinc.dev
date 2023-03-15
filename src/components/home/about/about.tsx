@@ -22,14 +22,12 @@ export default function About() {
         </div>
         <div className="sticky hidden md:flex top-32 w-24 h-24 mx-8 py-5 mb-20">
           <div className="py-8">
-            <div className="w-24 aspect-square bg-skeleton rounded-full">
-            </div>
-            {/* <Image
-              className="rounded-lg"
-              src={"/img/test-img.jpg"}
-              alt="Test"
+            <Image
+              className="rounded-full"
+              src={"/img/about-circle.png"}
+              alt="About me"
               fill
-            /> */}
+            />
           </div>
         </div>
       </div>
