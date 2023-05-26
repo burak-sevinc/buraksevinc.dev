@@ -7,7 +7,7 @@ export interface IProject {
   excerpt?: string;
   title?: string;
   coverImg?: string;
-  publishedAt?: string;
+  publishedAt?: string | number | Date;
   githubRepoUrl?: string;
 }
 

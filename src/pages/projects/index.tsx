@@ -18,6 +18,14 @@ const ProjectCard = dynamic(() => import("@/components/projects/projectCard"), {
 });
 
 export default function Projects({ projects }: { projects: IProject[] }) {
+  const projectsData: IProject[] = projects.map((item: IProject) => {
+    return { ...item, publishedAt: new Date(item.publishedAt as string) };
+  });
+
+  const sortedData = projectsData.sort(
+    (a,b) => Number(b.publishedAt) - Number(a.publishedAt)
+  )
+
   return (
     <>
       <NextSeo
@@ -58,7 +66,7 @@ export default function Projects({ projects }: { projects: IProject[] }) {
           )}
         </div>
         <div className="flex flex-col gap-8">
-          {projects.map((project: IProject) => (
+          {sortedData.map((project: IProject) => (
             <div key={project.slug}>
               <ProjectCard key={project.slug} project={project} />
             </div>
@@ -74,8 +82,8 @@ export const getStaticProps: GetStaticProps = async () => {
   projects
     .map((project) => project.data)
     .sort((a, b) => {
-      if (a.data.publishedAt > b.data.publishedAt) return 1;
-      if (a.data.publishedAt < b.data.publishedAt) return -1;
+      if (b.data.publishedAt > a.data.publishedAt) return 1;
+      if (b.data.publishedAt < a.data.publishedAt) return -1;
       return 0;
     });
 
