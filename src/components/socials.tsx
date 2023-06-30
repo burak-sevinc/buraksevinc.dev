@@ -27,7 +27,7 @@ export const socials = [
   },
   {
     component: <Twitter />,
-    href: "#",
+    href: "https://twitter.com/buraksevincdev",
     description: "Twitter Profile Link"
   },
 ];

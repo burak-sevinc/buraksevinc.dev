@@ -8,7 +8,7 @@ export default function ContactSection() {
         {socials.map((item, i) => (
           <Link href={item.href} key={i}>
             <div className="sr-only">{item.description}</div>
-            <div className="bg-secondary hover:bg-skeleton shadow hover:scale-110 transition ease-in-out flex items-center justify-center p-8 rounded-lg">
+            <div className="bg-zinc-200 hover:bg-zinc-400 hover:text-white dark:bg-slate-600 dark:hover:bg-slate-700 shadow hover:scale-110 transition ease-in-out flex items-center justify-center p-8 rounded-lg">
               <div className="scale-150">{item.component}</div>
             </div>
           </Link>

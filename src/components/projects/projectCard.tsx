@@ -8,7 +8,7 @@ import TechStack from "./project/techstack/techStack";
 export default function ProjectCard({ project }: { project: IProject }) {
   return (
     <div>
-      <div className="bg-[#eceef1] dark:bg-secondary rounded-lg overflow-hidden">
+      <div className="bg-zinc-100 border dark:border-slate-600 dark:bg-slate-700 rounded-lg overflow-hidden">
         {project.coverImg ? (
           <div className="relative w-full h-80">
             <Link href={`/projects/${project.slug}`} passHref>
@@ -26,7 +26,7 @@ export default function ProjectCard({ project }: { project: IProject }) {
         <div className="p-4 text-primay flex flex-col gap-4">
           <div className="flex flex-col md:flex-row justify-between">
             <Link href={`/projects/${project.slug}`} passHref>
-              <h1 className="text-xl font-extrabold hover:text-primary hover:underline-offset-2 hover:underline">
+              <h1 className="text-xl font-extrabold hover:text-[#4fa9ff] hover:underline-offset-2 hover:underline">
                 {project.title}
               </h1>
             </Link>

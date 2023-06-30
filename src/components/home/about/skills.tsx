@@ -38,9 +38,9 @@ const skills = [
 export default function Skills() {
   return (
     <section id="skills" className="pt-20">
-      <div className="prose dark:prose-invert font-Poppins">
-        <h2>Skills and Interests</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+      <div className="flex flex-col gap-12 font-Poppins">
+        <h2 className="text-2xl font-bold">Skills and Interests</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
           {skills.map((item) => (
             <div
               key={item.alt}
@@ -54,7 +54,7 @@ export default function Skills() {
                   fill
                 />
               </div>
-              <p>{item.alt}</p>
+              <p className="text-gray-800 dark:text-slate-100">{item.alt}</p>
             </div>
           ))}
         </div>

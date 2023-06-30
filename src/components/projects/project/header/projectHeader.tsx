@@ -5,7 +5,7 @@ export default function ProjectHeader({ project }: { project: IProject }) {
   return (
     <>
       <div className="space-y-4">
-        <h1 className="font-extrabold text-5xl tracking-tight text-primary">
+        <h1 className="font-extrabold text-5xl tracking-tight text-[#4fa9ff]">
           {project.title}
         </h1>
         <p className="text-md">{project.excerpt}</p>

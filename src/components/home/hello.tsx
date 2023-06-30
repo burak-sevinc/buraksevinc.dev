@@ -33,12 +33,13 @@ export default function Hello() {
         <h1 className="-ml-1 text-4xl md:text-6xl text-gray-800 dark:text-primary font-bold">
           Burak Sevinç
         </h1>
-        <p className="text-gray-800 dark:text-primary ">
-          React Frontend & Full Stack (Laravel) Dev
-        </p>
-        <div className="flex md:justify-start justify-center">
-          <TechSection />
+        <div className="flex flex-col gap-1">
+          <p className="text-gray-800 dark:text-primary ">Full Stack Dev</p>
+          <p className="text-xs italic">React, Next.js, Laravel, trpc and more...</p>
         </div>
+        {/* <div className="flex md:justify-start justify-center">
+          <TechSection />
+        </div> */}
       </div>
       <div className="relative md:w-full w-1/2 mx-auto">
         <div className="absolute -inset-0.5 dark:bg-gradient-to-r dark:from-primary dark:to-purple-600 blur opacity-0 dark:opacity-50 rounded-full"></div>

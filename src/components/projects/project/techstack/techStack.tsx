@@ -5,7 +5,7 @@ export default function TechStack({techStack}: {techStack?: string[]}) {
         <div className="font-bold">Techstack</div>
         {techStack?.map((tech, i) => (
           <div
-            className="bg-primary text-secondary py-1 px-2 rounded-lg"
+            className="bg-[#4fa9ff] text-secondary py-1 px-2 rounded-lg"
             key={i}
           >
             {tech}

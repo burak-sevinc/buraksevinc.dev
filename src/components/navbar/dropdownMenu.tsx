@@ -48,7 +48,7 @@ export default function DropdownMenu({ links }: { links: INavLink[] }) {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <div className="z-10 border-slate-300 rounded-lg border bg-secondary dark:bg-[#111111] p-4 dark:border-zinc-500 w-fit absolute right-0 mt-12 ">
+          <div className="z-10 border-slate-300 rounded-lg border bg-secondary dark:bg-slate-900/90 p-4 dark:border-zinc-500 w-fit absolute right-0 mt-12 ">
             <Menu.Items>
               <div className="flex flex-col gap-4 text-center focus:outline-none outline-none ring-0 focus:ring-0">
                 {links.map((link) => (
